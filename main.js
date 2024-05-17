@@ -27,7 +27,7 @@ const graficoMeses = {
 };
 
 // Função para atualizar o gráfico e os detalhes das despesas com base no mês selecionado
-function atualizarDadosmes(month) {
+function atualizarDadosMes(month) {
     // Obtém os dados de despesas para o mês selecionado
     const expense = graficoMeses[month];
 
@@ -52,7 +52,7 @@ function atualizarDadosmes(month) {
 
 // Adiciona um listener ao seletor de mês para atualizar o gráfico e os detalhes quando o mês é alterado
 document.getElementById("month-select").addEventListener("change", (event) => {
-    atualizarDadosmes(event.target.value);
+    atualizarDadosMes(event.target.value);
 });
 
 // Gera o gráfico de pizza inicialmente com os dados de janeiro
@@ -60,18 +60,17 @@ let chart = bb.generate({
     data: {
         columns: graficoMeses.janeiro.columns,
         type: "pie",
-        onclick: function (d, i) {
-            console.log("onclick", d, i); // Exibe informações no console quando um segmento do gráfico é clicado
-        },
-        onover: function (d, i) {
-            console.log("onover", d, i); // Exibe informações no console quando o mouse passa sobre um segmento do gráfico
-        },
-        onout: function (d, i) {
-            console.log("onout", d, i); // Exibe informações no console quando o mouse sai de um segmento do gráfico
-        },
     },
     bindto: "#donut-chart", // Vincula o gráfico ao elemento com o ID "donut-chart"
 });
 
 // Atualiza o gráfico e os detalhes das despesas para o mês inicial (janeiro)
-atualizarDadosmes("janeiro");
+atualizarDadosMes("janeiro");
+
+// Adiciona um listener de evento ao botão de reset
+document.getElementById("reset-button").addEventListener("click", () => {
+    // Reseta os dados para o mês inicial (janeiro)
+    atualizarDadosMes("janeiro");
+    // Reseta a seleção do mês para janeiro
+    document.getElementById("month-select").value = "janeiro";
+});

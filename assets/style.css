@@ -31,7 +31,7 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-left: 20px; /* ajuste conforme necessário */
+    margin-left: 20px; 
 }
 
 nav ul li:first-child {
@@ -87,4 +87,15 @@ h3 {
     font-size: 16px;
     color: #333;
     margin: 10px 0;
+}
+
+#reset-button {
+    background-color: #7FC396; 
+    color: white;
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    margin-top: 20px; 
 }
