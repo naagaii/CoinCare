@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,30 +6,52 @@ body {
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+header {
+    background-color: #7FC396;
+    color: #fff;
+    padding: 25px;
 }
 
-header {
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 10px 0;
 }
 
-header h1 {
-    color: #66BB6A;
-    flex: 1 1 100%;
-    text-align: center;
+#logo {
+    font-size: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li:first-child {
+    margin-left: 0;
 }
 
 nav a {
-    margin: 0 10px;
+    color: #fff;
     text-decoration: none;
-    color: #666;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 section.cadastro, section.lista-categorias {
@@ -49,9 +72,6 @@ table {
 
 table, th, td {
     border: 1px solid #ddd;
-}
-
-th, td {
     padding: 8px;
     text-align: left;
 }
@@ -68,25 +88,6 @@ button:hover {
     background-color: #55AA5A;
 }
 
-@media (max-width: 600px) {
-    .container {
-        padding: 10px;
-    }
-
-    header {
-        flex-direction: column;
-    }
-
-    nav a {
-        margin: 5px 0;
-    }
-
-    table, th, td {
-        font-size: 14px;
-    }
-}
-
-/* Estilos para dispositivos móveis */
 @media (max-width: 768px) {
     header {
         padding: 10px 20px;
@@ -97,6 +98,7 @@ button:hover {
     }
 
     nav {
+        flex-direction: column;
         text-align: center;
     }
 
@@ -113,39 +115,11 @@ button:hover {
 
     .container {
         padding: 10px;
-        margin-top: 10px;
-    }
-
-    section.cadastro, section.lista-categorias {
-        margin-top: 20px;
-    }
-
-    section.cadastro label, section.cadastro input {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    table, th, td {
-        font-size: 14px;
-    }
-
-    button {
-        width: 100%;
     }
 }
 
-/* Estilos para dispositivos menores, como smartphones em modo retrato */
-@media (max-width: 480px) {
-    #logo {
-        font-size: 16px;
-    }
-
-    h3 {
-        font-size: 20px;
-    }
-
+@media (max-width: 600px) {
     table, th, td {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
