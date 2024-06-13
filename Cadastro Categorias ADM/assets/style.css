@@ -1,5 +1,8 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .container {
@@ -12,14 +15,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
 }
 
 header h1 {
     color: #66BB6A;
+    flex: 1 1 100%;
+    text-align: center;
 }
 
 nav a {
-    margin-left: 10px;
+    margin: 0 10px;
     text-decoration: none;
     color: #666;
 }
@@ -28,9 +35,16 @@ section.cadastro, section.lista-categorias {
     margin-top: 20px;
 }
 
+section.cadastro label, section.cadastro input {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px;
 }
 
 table, th, td {
@@ -52,4 +66,86 @@ button {
 
 button:hover {
     background-color: #55AA5A;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 5px 0;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    #logo {
+        font-size: 18px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    section.cadastro, section.lista-categorias {
+        margin-top: 20px;
+    }
+
+    section.cadastro label, section.cadastro input {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* Estilos para dispositivos menores, como smartphones em modo retrato */
+@media (max-width: 480px) {
+    #logo {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    table, th, td {
+        font-size: 12px;
+    }
 }

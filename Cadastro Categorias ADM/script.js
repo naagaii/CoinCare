@@ -1,35 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const categorias = [
-        { nome: 'GASTOS FIXOS', percentual: 50 },
-        { nome: 'LAZER', percentual: 10 },
-        { nome: 'TRANSPORTE', percentual: 10 },
-        { nome: 'VIAGENS', percentual: 10 },
-        { nome: 'ECONOMIAS', percentual: 20 },
-    ];
-
+    const apiUrl = 'http://localhost:3000/categorias';
     const categoriasTableBody = document.querySelector('#categorias-table tbody');
     const nomeCategoriaInput = document.querySelector('#nome-categoria');
     const percentualMaxInput = document.querySelector('#percentual-max');
     const adicionarButton = document.querySelector('#adicionar');
 
-    function renderCategorias() {
+    function fetchCategorias() {
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                renderCategorias(data);
+            });
+    }
+
+    function renderCategorias(categorias) {
         categoriasTableBody.innerHTML = '';
         categorias.forEach((categoria, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${categoria.nome}</td>
                 <td>${categoria.percentual}%</td>
-                <td><button class="excluir" data-index="${index}">Excluir</button></td>
+                <td><button class="excluir" data-id="${categoria.id}">Excluir</button></td>
             `;
             categoriasTableBody.appendChild(row);
         });
 
         document.querySelectorAll('.excluir').forEach(button => {
             button.addEventListener('click', (event) => {
-                const index = event.target.dataset.index;
-                categorias.splice(index, 1);
-                renderCategorias();
+                const id = event.target.dataset.id;
+                deleteCategoria(id);
             });
+        });
+    }
+
+    function addCategoria(nome, percentual) {
+        const categoria = { nome, percentual };
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(categoria)
+        })
+        .then(response => response.json())
+        .then(() => {
+            fetchCategorias();
+        });
+    }
+
+    function deleteCategoria(id) {
+        fetch(`${apiUrl}/${id}`, {
+            method: 'DELETE'
+        })
+        .then(() => {
+            fetchCategorias();
         });
     }
 
@@ -38,8 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentual = parseFloat(percentualMaxInput.value);
 
         if (nome && !isNaN(percentual)) {
-            categorias.push({ nome, percentual });
-            renderCategorias();
+            addCategoria(nome, percentual);
             nomeCategoriaInput.value = '';
             percentualMaxInput.value = '';
         } else {
@@ -47,5 +70,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    renderCategorias();
+    fetchCategorias();
 });
